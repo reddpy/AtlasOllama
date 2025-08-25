@@ -9,7 +9,7 @@ const SidebarHistory = () => {
   };
 
   createEffect(() => {
-    console.log("sidebar state: ", sidebarOpen());
+    // console.log("sidebar state: ", sidebarOpen());
   });
 
   return (

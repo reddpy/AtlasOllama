@@ -1,12 +1,17 @@
 import { useNavigate } from "@solidjs/router";
+import { clientOnly } from "@solidjs/start";
+import { Volume } from "lucide-solid";
 import { createEffect, createSignal } from "solid-js";
 import AtlasWord from "~/components/atlasWord";
 import ChatBox from "~/components/chatbox";
 import MenuToggle from "~/components/navigation/menuToggle";
 import SidebarHistory from "~/components/navigation/sidebar";
-import SoundToggle from "~/components/navigation/soundToggle";
 import ThemeToggle from "~/components/navigation/themeToggle";
 import { setGlobalState } from "~/stores/global";
+
+const ClientOnlySoundToggle = clientOnly(
+  () => import("~/components/navigation/soundToggle"),
+);
 
 export default function Home() {
   const [input, setInput] = createSignal("");
@@ -27,7 +32,13 @@ export default function Home() {
       <div class="flex sm:flex-row flex-col">
         <div class="flex-col hidden sm:flex m-1 join join-vertical gap-2 p-1">
           <ThemeToggle />
-          <SoundToggle />
+          <ClientOnlySoundToggle
+            fallback={
+              <button class="btn btn-square rounded-xl btn-md" disabled>
+                <Volume />
+              </button>
+            }
+          />
           <SidebarHistory />
         </div>
         <div class="flex-col sm:hidden pl-2 pt-2">

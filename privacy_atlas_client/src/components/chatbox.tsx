@@ -6,6 +6,7 @@ import {
   SubmitHandler,
 } from "@modular-forms/solid";
 import { createMemo, onMount, Setter } from "solid-js";
+import { globalState } from "~/stores/global";
 
 import { ArrowUp } from "lucide-solid";
 
@@ -32,7 +33,9 @@ const ChatBox = ({ inputSetter }: ChatBoxProps) => {
   const handleSubmit: SubmitHandler<ChatBoxForm> = (values, event) => {
     inputSetter(values.charQuery);
     setValue(chatBoxForm, "charQuery", "");
-    playSound();
+    if (globalState.globalSound === true) {
+      playSound();
+    }
   };
 
   const handleSubmitKey = (event: KeyboardEvent) => {
