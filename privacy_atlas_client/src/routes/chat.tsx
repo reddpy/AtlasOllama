@@ -1,12 +1,10 @@
+import { clientOnly } from "@solidjs/start";
+import { Volume } from "lucide-solid";
 import AtlasWord from "~/components/atlasWord";
 import ChatBoxChat from "~/components/chatboxChat";
 import ChatMessages from "~/components/chatMessages";
-import { ChatProvider } from "~/contexts/chatContext";
 import NewChatToggle from "~/components/navigation/newChatToggle";
-import SidebarHistory from "~/components/navigation/sidebar";
-import { clientOnly } from "@solidjs/start";
-import { Volume } from "lucide-solid";
-import ChatMenuToggle from "~/components/navigation/chatMenuToggle";
+import { ChatProvider } from "~/contexts/chatContext";
 
 const ClientOnlySoundToggle = clientOnly(
   () => import("~/components/navigation/soundToggle"),
@@ -21,7 +19,16 @@ const ChatPage = () => {
           class="flex flex-row justify-between items-center shadow-md sm:justify-center sm:h-9 h-12 w-full"
         >
           <div class="sm:hidden pl-2">
-            <ChatMenuToggle />
+            {/*<ChatMenuToggle />*/}
+            <NewChatToggle />
+            {/*<SidebarHistory />*/}
+            <ClientOnlySoundToggle
+              fallback={
+                <button class="btn btn-square rounded-xl btn-md" disabled>
+                  <Volume />
+                </button>
+              }
+            />
           </div>
           <p class="text-3xl">
             <AtlasWord />
@@ -34,12 +41,12 @@ const ChatPage = () => {
           {/* Sidebar */}
           <div
             id="sidebar_menu_options"
-            class="flex-shrink-0 bg-orange-200 ml-1 my-2 rounded-2xl"
+            class="flex-shrink-0 ml-1 my-2 rounded-2xl"
           >
             {/* Desktop Sidebar */}
             <div class="hidden sm:flex flex-col join join-vertical gap-2 p-0.5 h-full">
               <NewChatToggle />
-              <SidebarHistory />
+              {/*<SidebarHistory />*/}
               <ClientOnlySoundToggle
                 fallback={
                   <button class="btn btn-square rounded-xl btn-md" disabled>
