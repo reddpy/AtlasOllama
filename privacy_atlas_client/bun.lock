@@ -5,6 +5,7 @@
       "name": "example-with-tailwindcss",
       "dependencies": {
         "@modular-forms/solid": "^0.25.1",
+        "@solid-primitives/storage": "^4.3.3",
         "@solidjs/router": "^0.15.0",
         "@solidjs/start": "^1.1.0",
         "lucide-solid": "^0.540.0",
@@ -303,6 +304,10 @@
     "@sindresorhus/is": ["@sindresorhus/is@7.0.2", "", {}, "sha512-d9xRovfKNz1SKieM0qJdO+PQonjnnIfSNWfHYnBSJ9hkjm0ZPw6HlxscDXYstp3z+7V2GOFHc+J0CYrYTjqCJw=="],
 
     "@sindresorhus/merge-streams": ["@sindresorhus/merge-streams@2.3.0", "", {}, "sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg=="],
+
+    "@solid-primitives/storage": ["@solid-primitives/storage@4.3.3", "", { "dependencies": { "@solid-primitives/utils": "^6.3.2" }, "peerDependencies": { "@tauri-apps/plugin-store": "*", "solid-js": "^1.6.12" }, "optionalPeers": ["@tauri-apps/plugin-store"] }, "sha512-ACbNwMZ1s8VAvld6EUXkDkX/US3IhtlPLxg6+B2s9MwNUugwdd51I98LPEaHrdLpqPmyzqgoJe0TxEFlf3Dqrw=="],
+
+    "@solid-primitives/utils": ["@solid-primitives/utils@6.3.2", "", { "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-hZ/M/qr25QOCcwDPOHtGjxTD8w2mNyVAYvcfgwzBHq2RwNqHNdDNsMZYap20+ruRwW4A3Cdkczyoz0TSxLCAPQ=="],
 
     "@solidjs/router": ["@solidjs/router@0.15.3", "", { "peerDependencies": { "solid-js": "^1.8.6" } }, "sha512-iEbW8UKok2Oio7o6Y4VTzLj+KFCmQPGEpm1fS3xixwFBdclFVBvaQVeibl1jys4cujfAK5Kn6+uG2uBm3lxOMw=="],
 

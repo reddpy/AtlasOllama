@@ -32,12 +32,17 @@ const ChatBoxChat = () => {
 
     await sendMessage(values.charQuery);
     setValue(chatBoxForm, "charQuery", ""); // Clear input
-    playSound();
+
+    if (globalState.globalSound === true) {
+      playSound();
+    }
   };
 
   const handleStop = () => {
     stopStreaming();
-    playSound();
+    if (globalState.globalSound === true) {
+      playSound();
+    }
   };
 
   const handleSubmitKey = (event: KeyboardEvent) => {

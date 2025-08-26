@@ -1,8 +1,15 @@
 import { useNavigate } from "@solidjs/router";
+import { clientOnly } from "@solidjs/start";
+import { Volume } from "lucide-solid";
 import { createEffect, createSignal } from "solid-js";
 import AtlasWord from "~/components/atlasWord";
 import ChatBox from "~/components/chatbox";
-import { globalState, setGlobalState } from "~/stores/global";
+import MenuToggle from "~/components/navigation/menuToggle";
+import { setGlobalState } from "~/stores/global";
+
+const ClientOnlySoundToggle = clientOnly(
+  () => import("~/components/navigation/soundToggle"),
+);
 
 export default function Home() {
   const [input, setInput] = createSignal("");
@@ -11,38 +18,67 @@ export default function Home() {
   // Watch for changes to input
   createEffect(() => {
     const currentInput = input();
-
     // This runs when the chat is submitted
     if (currentInput && currentInput.trim() !== "") {
       setGlobalState("textQuery", currentInput);
-
       return navigate("/chat");
     }
   });
 
   return (
-    <main class="min-h-screen text-gray-700 relative overflow-hidden">
-      <div class="pt-[17vh] flex flex-col items-center px-4 relative z-20">
-        <h1 class="max-6-xs my-6 text-7xl text-center animate-logo">
-          <AtlasWord />
-        </h1>
-
-        <p class="pb-5 font-normal text-3xl font-apple-garamond text-center animate-subtitle">
-          The Knowledge of the World, <br class="sm:hidden" /> at your
-          fingertips
-          <span class="font-bold text-[#B62E00]">.</span>
-        </p>
-
-        <div class="w-full max-w-4xl mb-8 animate-chatbox">
-          <ChatBox inputSetter={setInput} />
+    <main class="relative min-h-screen text-gray-700 overflow-hidden">
+      <div class="flex sm:flex-row flex-col">
+        <div class="flex-col hidden sm:flex ml-1 my-1 join join-vertical gap-2 p-0.5 rounded-2xl">
+          {/*<SidebarHistory />*/}
+          <ClientOnlySoundToggle
+            fallback={
+              <button class="btn btn-square rounded-xl btn-md" disabled>
+                <Volume />
+              </button>
+            }
+          />
+        </div>
+        <div class="flex-col sm:hidden pl-2 pt-2">
+          {/*<MenuToggle />*/}
+          <ClientOnlySoundToggle
+            fallback={
+              <button class="btn btn-square rounded-xl btn-md" disabled>
+                <Volume />
+              </button>
+            }
+          />
+        </div>
+        <div id="chat_app" class="flex-1 flex justify-center">
+          <img
+            src="/atlas.png"
+            alt="Atlas bearing the weight of knowledge"
+            class="absolute animate-atlas top-[15vh] left-1/2 -translate-x-1/2 w-[600px] min-w-[600px] max-w-[600px] opacity-10 z-0"
+          />
+          {/* Main content */}
+          <div
+            id="chat_component_home"
+            class="relative z-10 sm:pt-[17vh] pt-[10vh] flex flex-col items-center px-4 min-h-[80%] sm:min-h-screen w-full max-w-4xl"
+          >
+            {/* Text Logo */}
+            <h1 class="my-6 text-7xl text-center max-6-xs pl-4 sm:pr-6 sm:pl-0 ">
+              <AtlasWord />
+            </h1>
+            {/* Subtitle */}
+            <p class="pb-5 text-3xl font-normal font-apple-garamond text-center pl-6 sm:pl-0 sm:pr-10">
+              The Knowledge of the World, <br class="sm:hidden" /> at your
+              fingertips
+              <span class="font-bold text-4xl text-[#B62E00]">.</span>
+            </p>
+            {/* ChatBox */}
+            <div class="w-full max-w-4xl mb-8 sm:pl-0 sm:pr-10">
+              <ChatBox inputSetter={setInput} />
+            </div>
+          </div>
+          <p class="absolute bottom-0 rounded-2xl bg-[#FFF7ED] p-1 mb-2 mr-6 text-xs">
+            Atlas can make mistakes. Check important Information.
+          </p>
         </div>
       </div>
-
-      <img
-        class="absolute top-[15vh] left-1/2 transform -translate-x-1/2 w-[600px] min-w-[600px] max-w-[600px] opacity-10 z-0 pointer-events-none animate-atlas"
-        src="/atlas.png"
-        alt="Atlas bearing the weight of knowledge"
-      />
     </main>
   );
 }

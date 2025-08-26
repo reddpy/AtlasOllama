@@ -6,6 +6,7 @@ import {
   SubmitHandler,
 } from "@modular-forms/solid";
 import { createMemo, onMount, Setter } from "solid-js";
+import { globalState } from "~/stores/global";
 
 import { ArrowUp } from "lucide-solid";
 
@@ -32,7 +33,9 @@ const ChatBox = ({ inputSetter }: ChatBoxProps) => {
   const handleSubmit: SubmitHandler<ChatBoxForm> = (values, event) => {
     inputSetter(values.charQuery);
     setValue(chatBoxForm, "charQuery", "");
-    playSound();
+    if (globalState.globalSound === true) {
+      playSound();
+    }
   };
 
   const handleSubmitKey = (event: KeyboardEvent) => {
@@ -99,7 +102,7 @@ const ChatBox = ({ inputSetter }: ChatBoxProps) => {
                   {...props}
                   id={field.name}
                   ref={textareaRef}
-                  placeholder="The Weight of Knowledge, Atlas bears"
+                  placeholder="The Weight of Knowledge"
                   class="h-[40px] min-h-[40px] textarea border-none w-full resize-none focus:outline-none focus:ring-2 focus:ring-sky-500 rounded-xl"
                   rows="1"
                   value={field.value}
