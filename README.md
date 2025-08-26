@@ -1,32 +1,63 @@
-# SolidStart
+# Atlas Client
 
-Everything you need to build a Solid project, powered by [`solid-start`](https://start.solidjs.com);
+A local web interface for chatting with Ollama AI models. Built with SolidStart, DaisyUI, and powered by your local Ollama server.
 
-## Creating a project
+## Features
 
-```bash
-# create a new project in the current directory
-npm init solid@latest
+- Full conversation support with context memory
+- Clean, responsive chat interface
+- Sound effects toggle
 
-# create a new project in my-app
-npm init solid@latest my-app
+- Configurable Ollama endpoint
+
+## Prerequisites
+
+- [Bun](https://bun.sh/) installed
+- [Ollama](https://ollama.ai/) running locally with at least one model downloaded
+
+## Quick Start
+
+1. Clone this repository
+2. Install dependencies:
+   ```bash
+   bun install
+   ```
+3. Copy the environment file and configure if needed:
+   ```bash
+   cp .env.example .env
+   ```
+4. Make sure Ollama is running:
+   ```bash
+   ollama serve
+   ```
+5. Start the development server:
+   ```bash
+   bun dev
+   ```
+6. Open your browser to `http://localhost:3000`
+
+## Configuration
+
+Edit `.env` to customize your setup:
+
+```env
+OLLAMA_ENDPOINT=http://localhost:11434
 ```
 
-## Developing
+## Usage
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1. Make sure you have a model downloaded in Ollama (e.g., `ollama pull llama2`)
+2. Start chatting! Your conversation context is maintained during the session
+3. Use the sound toggle to enable/disable audio feedback
 
-```bash
-npm run dev
+## Tech Stack
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+- **Framework**: SolidStart (SolidJS)
+- **Language**: TypeScript
+- **Styling**: DaisyUI + Tailwind CSS
+- **Runtime**: Bun
+- **AI Backend**: Ollama
 
-## Building
+## License
 
-Solid apps are built with _presets_, which optimise your project for deployment to different environments.
-
-By default, `npm run build` will generate a Node app that you can run with `npm start`. To use a different preset, add it to the `devDependencies` in `package.json` and specify in your `app.config.js`.
-
-## This project was created with the [Solid CLI](https://github.com/solidjs-community/solid-cli)
+MIT

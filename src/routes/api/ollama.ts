@@ -34,18 +34,21 @@ export async function POST(event: APIEvent) {
   const stream = new ReadableStream({
     async start(controller) {
       try {
-        const response = await fetch("http://localhost:11434/api/chat", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          `${process.env.OLLAMA_ENDPOINT}/api/chat`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              model,
+              messages: messages, // Send the full conversation history
+              stream: true,
+            }),
+            signal: event.request.signal,
           },
-          body: JSON.stringify({
-            model,
-            messages: messages, // Send the full conversation history
-            stream: true,
-          }),
-          signal: event.request.signal,
-        });
+        );
 
         if (!response.body) {
           throw new Error("No response body");
