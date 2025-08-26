@@ -1,10 +1,10 @@
 import { CircleEllipsis } from "lucide-solid";
 
-const MenuToggle = () => {
+const ChatMenuToggle = () => {
   return (
     <>
       <div class="tooltip tooltip-right" data-tip="Menu">
-        <button class="btn btn-square rounded-lg btn-lg">
+        <button class="btn btn-square rounded-xl btn-md">
           <CircleEllipsis />
         </button>
       </div>
@@ -12,4 +12,4 @@ const MenuToggle = () => {
   );
 };
 
-export default MenuToggle;
+export default ChatMenuToggle;

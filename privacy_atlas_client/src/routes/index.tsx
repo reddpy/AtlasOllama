@@ -6,7 +6,6 @@ import AtlasWord from "~/components/atlasWord";
 import ChatBox from "~/components/chatbox";
 import MenuToggle from "~/components/navigation/menuToggle";
 import SidebarHistory from "~/components/navigation/sidebar";
-import ThemeToggle from "~/components/navigation/themeToggle";
 import { setGlobalState } from "~/stores/global";
 
 const ClientOnlySoundToggle = clientOnly(
@@ -30,8 +29,8 @@ export default function Home() {
   return (
     <main class="relative min-h-screen text-gray-700 overflow-hidden">
       <div class="flex sm:flex-row flex-col">
-        <div class="flex-col hidden sm:flex m-1 join join-vertical gap-2 p-1">
-          <ThemeToggle />
+        <div class="flex-col hidden sm:flex ml-1 my-1 join join-vertical gap-2 p-0.5 bg-orange-200 rounded-2xl">
+          <SidebarHistory />
           <ClientOnlySoundToggle
             fallback={
               <button class="btn btn-square rounded-xl btn-md" disabled>
@@ -39,7 +38,6 @@ export default function Home() {
               </button>
             }
           />
-          <SidebarHistory />
         </div>
         <div class="flex-col sm:hidden pl-2 pt-2">
           <MenuToggle />
