@@ -2,6 +2,8 @@
 
 A local web interface for chatting with Ollama AI models. Built with SolidStart, DaisyUI, and powered by your local Ollama server.
 
+[![Atlas Demo](https://img.youtube.com/vi/70ll3zswiKs/0.jpg)](https://www.youtube.com/watch?v=70ll3zswiKs)
+
 ## Features
 
 - Full conversation support with context memory
